@@ -16,7 +16,7 @@ class User(Resource):
             return user.json()
         return {'message': 'User not found.'}, 404
 
-    @jwt_required
+    @jwt_required()
     def delete(self, user_id):
         user = UserModel.find_user(user_id)
         if user:
@@ -51,7 +51,7 @@ class UserLogin(Resource):
     
 class UserLogout(Resource):
     
-    @jwt_required
+    @jwt_required()
     def post(self):
         jwt_id = get_jwt()["jti"] # JWT Token Identifier
         BLOCKLIST.add(jwt_id)
